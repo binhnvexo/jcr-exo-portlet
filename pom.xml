@@ -1,0 +1,142 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>exoplatform</groupId>
+  <artifactId>jcr-exo-portlet</artifactId>
+  <packaging>war</packaging>
+  <version>1.0-SNAPSHOT</version>
+  <name>jcr-exo-portlet Maven Webapp</name>
+  <url>http://maven.apache.org</url>
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+  	<groupId>javax.servlet</groupId>
+  	<artifactId>servlet-api</artifactId>
+  	<version>3.0-alpha-1</version>
+		<scope>provided</scope>
+	</dependency>
+
+  <dependency>
+  	<groupId>javax.portlet</groupId>
+  	<artifactId>portlet-api</artifactId>
+  	<version>2.0</version>
+		<scope>provided</scope>
+	</dependency>
+
+  <dependency>
+  	<groupId>org.exoplatform.kernel</groupId>
+  	<artifactId>exo.kernel.commons</artifactId>
+  	<version>2.3.7-GA</version>
+		<scope>provided</scope>
+	</dependency>
+
+  <dependency>
+ 		<groupId>org.exoplatform.kernel</groupId>
+  	<artifactId>exo.kernel.container</artifactId>
+  	<version>2.3.7-GA</version>
+		<scope>provided</scope>
+	</dependency>
+
+    <dependency>
+      <groupId>org.exoplatform.core</groupId>
+      <artifactId>exo.core.component.organization.api</artifactId>
+			<version>2.4.7-GA</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.exoplatform.core</groupId>
+      <artifactId>exo.core.component.security.core</artifactId>
+		 <version>2.4.7-GA</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.exoplatform.portal</groupId>
+      <artifactId>exo.portal.component.portal</artifactId>
+  		<version>3.2.4-PLF-SNAPSHOT</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.exoplatform.portal</groupId>
+      <artifactId>exo.portal.component.resources</artifactId>
+  		<version>3.2.4-PLF-SNAPSHOT</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.exoplatform.portal</groupId>
+      <artifactId>exo.portal.component.web.controller</artifactId>
+  		<version>3.2.4-PLF-SNAPSHOT</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.exoplatform.portal</groupId>
+      <artifactId>exo.portal.webui.framework</artifactId>
+  		<version>3.2.4-PLF-SNAPSHOT</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.exoplatform.portal</groupId>
+      <artifactId>exo.portal.webui.core</artifactId>
+  		<version>3.2.4-PLF-SNAPSHOT</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.exoplatform.portal</groupId>
+      <artifactId>exo.portal.webui.eXo</artifactId>
+  		<version>3.2.4-PLF-SNAPSHOT</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.exoplatform.portal</groupId>
+      <artifactId>exo.portal.webui.portlet</artifactId>
+  		<version>3.2.4-PLF-SNAPSHOT</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.exoplatform.portal</groupId>
+      <artifactId>exo.portal.webui.dashboard</artifactId>
+ 		<version>3.2.4-PLF-SNAPSHOT</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.exoplatform.portal</groupId>
+      <artifactId>exo.portal.webui.portal</artifactId>
+  		<version>3.2.4-PLF-SNAPSHOT</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>exoplatform</groupId>
+      <artifactId>jcr-exo</artifactId>
+  		<version>1.0-SNAPSHOT</version>
+      <scope>provided</scope>
+    </dependency>
+    
+    <dependency>
+    	<groupId>org.exoplatform.social</groupId>
+  		<artifactId>exo.social.component.core</artifactId>
+  		<version>1.2.9-SNAPSHOT</version>
+    	<scope>provided</scope>
+    </dependency>
+  </dependencies>
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+  <build>
+    <finalName>jcr-exo-portlet</finalName>
+  </build>
+</project>
