@@ -31,6 +31,7 @@ import org.exoplatform.webui.event.EventListener;
 import org.exoplatform.webui.form.UIForm;
 
 import exoplatform.BookStoreService;
+import exoplatform.bookstore.portlet.UIBookManagementPortlet;
 import exoplatform.bookstore.service.BookstoreServiceUtil;
 import exoplatform.entity.Book;
 import exoplatform.exception.BookNotFoundException;
@@ -52,13 +53,22 @@ public class UIBookList extends UIComponent {
 
   private List<Book> books = new ArrayList<Book>();
   
+  public UIBookList() {
+    
+  }
+  
   public static class EditActionListener extends EventListener<UIBookList> {
 
     @Override
     public void execute(Event<UIBookList> event) throws Exception {
       WebuiRequestContext ctx = event.getRequestContext();
       String bookId = ctx.getRequestParameter(OBJECTID);
-      
+      UIBookList uiBookList = event.getSource();
+      UIPopupAction popupAction = uiBookList.getAncestorOfType(UIBookManagementPortlet.class)
+                                            .getChild(UIPopupAction.class);
+      popupAction.activate(UIBookEdit.class, 600, 400);
+      UIBookEdit uiBookEdit = popupAction.getChild(UIBookEdit.class);
+      ctx.addUIComponentToUpdateByAjax(popupAction);
     }
     
   }

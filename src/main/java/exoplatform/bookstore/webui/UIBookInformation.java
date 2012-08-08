@@ -14,30 +14,25 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package exoplatform.bookstore.portlet;
+package exoplatform.bookstore.webui;
 
-import org.exoplatform.webui.config.annotation.ComponentConfig;
-import org.exoplatform.webui.core.UIPortletApplication;
-import org.exoplatform.webui.core.lifecycle.UIApplicationLifecycle;
-
-import exoplatform.bookstore.webui.UIBookManagement;
-import exoplatform.bookstore.webui.UIPopupAction;
+import org.exoplatform.webui.form.UIFormInputSet;
+import org.exoplatform.webui.form.UIFormStringInput;
 
 /**
  * Created by The eXo Platform SAS
  * Author : BinhNV
  *          binhnv@exoplatform.com
- * Aug 6, 2012  
+ * Aug 8, 2012  
  */
-@ComponentConfig(
-    lifecycle = UIApplicationLifecycle.class,
-    template = "app:/groovy/portlet/UIBookManagementPortlet.gtmpl"
-)
-public class UIBookManagementPortlet extends UIPortletApplication {
+public class UIBookInformation extends UIFormInputSet {
 
-  public UIBookManagementPortlet() throws Exception {
-    addChild(UIBookManagement.class, null, null);
-    addChild(UIPopupAction.class, null, "UIBookPopupAction");
+  public UIBookInformation(String name) {
+    super("UIBookInformation");
+    addUIFormInput(new UIFormStringInput("bookId", "bookId", "bookId"));
+    addUIFormInput(new UIFormStringInput("name", "name", "name"));
+    addUIFormInput(new UIFormStringInput("category", "category", "category"));
+    addUIFormInput(new UIFormStringInput("content", "content", "content"));
   }
-
+  
 }
