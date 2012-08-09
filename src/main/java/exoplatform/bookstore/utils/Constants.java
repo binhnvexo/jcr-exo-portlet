@@ -14,31 +14,28 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package exoplatform.bookstore.portlet;
-
-import org.exoplatform.webui.config.annotation.ComponentConfig;
-import org.exoplatform.webui.core.UIPortletApplication;
-import org.exoplatform.webui.core.lifecycle.UIApplicationLifecycle;
-
-import exoplatform.bookstore.webui.UIBookManagement;
-import exoplatform.bookstore.webui.UIBookSearch;
-import exoplatform.bookstore.webui.UIPopupAction;
+package exoplatform.bookstore.utils;
 
 /**
  * Created by The eXo Platform SAS
  * Author : BinhNV
  *          binhnv@exoplatform.com
- * Aug 6, 2012  
+ * Aug 8, 2012  
  */
-@ComponentConfig(
-    lifecycle = UIApplicationLifecycle.class,
-    template = "app:/groovy/portlet/UIBookManagementPortlet.gtmpl"
-)
-public class UIBookManagementPortlet extends UIPortletApplication {
+public class Constants {
 
-  public UIBookManagementPortlet() throws Exception {
-    addChild(UIBookManagement.class, null, null);
-    addChild(UIPopupAction.class, null, "UIBookPopupAction");
-  }
-
+  public static final String CATEGORY_NOVEL = "NOVEL";
+  public static final String CATEGORY_MANGA = "MANGA";
+  public static final String CATEGORY_COMICS = "COMICS";
+  public static final String CATEGORY_TECHNICAL = "TECHNICAL";
+  public static final String CATEGORY_MATHS = "MATHS";
+  public static final String CATEGORY_HISTORY = "HISTORY";
+  
+  public static final String CATEGORY_NOVEL_VALUE = "NOVEL";
+  public static final String CATEGORY_MANGA_VALUE = "MANGA";
+  public static final String CATEGORY_COMICS_VALUE = "COMICS";
+  public static final String CATEGORY_TECHNICAL_VALUE = "TECHNICAL";
+  public static final String CATEGORY_MATHS_VALUE = "MATHS";
+  public static final String CATEGORY_HISTORY_VALUE = "HISTORY";
+  
 }

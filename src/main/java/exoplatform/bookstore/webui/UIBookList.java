@@ -23,12 +23,10 @@ import org.exoplatform.webui.application.WebuiRequestContext;
 import org.exoplatform.webui.config.annotation.ComponentConfig;
 import org.exoplatform.webui.config.annotation.EventConfig;
 import org.exoplatform.webui.core.UIComponent;
-import org.exoplatform.webui.core.UIContainer;
-import org.exoplatform.webui.core.lifecycle.UIContainerLifecycle;
-import org.exoplatform.webui.core.lifecycle.UIFormLifecycle;
+import org.exoplatform.webui.core.UIPopupWindow;
 import org.exoplatform.webui.event.Event;
+import org.exoplatform.webui.event.Event.Phase;
 import org.exoplatform.webui.event.EventListener;
-import org.exoplatform.webui.form.UIForm;
 
 import exoplatform.BookStoreService;
 import exoplatform.bookstore.portlet.UIBookManagementPortlet;
@@ -46,7 +44,8 @@ import exoplatform.exception.BookNotFoundException;
     template = "app:/groovy/webui/UIBookList.gtmpl",
     events = {
       @EventConfig(listeners=UIBookList.EditActionListener.class),
-      @EventConfig(listeners=UIBookList.DeleteActionListener.class)
+      @EventConfig(listeners=UIBookList.DeleteActionListener.class),
+      @EventConfig(listeners=UIBookList.AddActionListener.class)
     }
 )
 public class UIBookList extends UIComponent {
@@ -54,7 +53,7 @@ public class UIBookList extends UIComponent {
   private List<Book> books = new ArrayList<Book>();
   
   public UIBookList() {
-    
+    books = BookstoreServiceUtil.getAllBook(); 
   }
   
   public static class EditActionListener extends EventListener<UIBookList> {
@@ -67,7 +66,11 @@ public class UIBookList extends UIComponent {
       UIPopupAction popupAction = uiBookList.getAncestorOfType(UIBookManagementPortlet.class)
                                             .getChild(UIPopupAction.class);
       popupAction.activate(UIBookEdit.class, 600, 400);
-      UIBookEdit uiBookEdit = popupAction.getChild(UIBookEdit.class);
+      UIBookEdit uiBookEdit = (UIBookEdit) popupAction.getChild(UIPopupWindow.class).getUIComponent();
+      Book book = new Book();
+      book = BookstoreServiceUtil.getBookstoreService().getBook(bookId);
+      uiBookEdit.setBook(book);
+      uiBookEdit.fillBookInformation();
       ctx.addUIComponentToUpdateByAjax(popupAction);
     }
     
@@ -90,11 +93,25 @@ public class UIBookList extends UIComponent {
     
   }
   
+  public static class AddActionListener extends EventListener<UIBookList> {
+
+    @Override
+    public void execute(Event<UIBookList> event) throws Exception {
+      WebuiRequestContext ctx = event.getRequestContext();
+      UIBookList uiBookList = event.getSource();
+      UIPopupAction uiPopupAction = uiBookList.getAncestorOfType(UIBookManagementPortlet.class)
+                                              .getChild(UIPopupAction.class);
+      uiPopupAction.activate(UIBookAdd.class, 600, 400);
+      UIBookAdd uiBookAdd = (UIBookAdd) uiPopupAction.getChild(UIPopupWindow.class).getUIComponent();
+      ctx.addUIComponentToUpdateByAjax(uiPopupAction);
+    }
+    
+  }
+  
   /**
    * @return the books
    */
   public List<Book> getBooks() {
-    books = BookstoreServiceUtil.getAllBook(); 
     return books;
   }
 

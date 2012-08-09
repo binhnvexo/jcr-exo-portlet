@@ -24,6 +24,7 @@ import org.exoplatform.container.ExoContainerContext;
 import exoplatform.BookStoreService;
 import exoplatform.entity.Book;
 import exoplatform.exception.BookNotFoundException;
+import exoplatform.exception.DuplicateBookException;
 
 
 
@@ -46,6 +47,22 @@ public class BookstoreServiceUtil {
   
   public void deleteBook(String bookId) throws BookNotFoundException {
     getBookstoreService().deleteBook(bookId);
+  }
+  
+  public void getBookById(String bookId) {
+    getBookstoreService().getBook(bookId);
+  }
+  
+  public void editBook(Book book) throws BookNotFoundException {
+    getBookstoreService().editBook(book);
+  }
+  
+  public Book addBookWithout(Book book) throws DuplicateBookException {
+    return getBookstoreService().addBookWithout(book);
+  }
+  
+  public List<Book> getBookByName(String bookName) {
+    return getBookstoreService().searchBookByName(bookName);
   }
   
 }

@@ -27,11 +27,11 @@ import org.exoplatform.webui.core.UIContainer;
  */
 @ComponentConfig(
     template = "app:/groovy/webui/UIBookManagement.gtmpl"
-    
 )
 public class UIBookManagement extends UIContainer {
 
   public UIBookManagement() throws Exception {
+    addChild(UIBookSearch.class, null, null);
     addChild(UIBookList.class, null, null);
   }
   

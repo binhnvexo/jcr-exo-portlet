@@ -7,22 +7,23 @@
 <%
 	def pcontext = Util.getPortalRequestContext();
 	def jsManager = pcontext.getJavascriptManager();
-	jsManager.importJavascript("eXo.social.Util", LinkProvider.JAVASCRIPT_RESOURCE_URL);
-	jsManager.importJavascript("eXo.social.PortalHttpRequest", LinkProvider.JAVASCRIPT_RESOURCE_URL);
-	jsManager.importJavascript("eXo.social.webui.UIActivity", LinkProvider.JAVASCRIPT_RESOURCE_URL);
 %>
 
 <div id="$uicomponent.id">
-
+			
+			<table border="1">
+			
 	<%
+		def addBookAction = uicomponent.event("Add")
 		def bookList = uicomponent.getBooks();
+		
 		if (bookList.isEmpty()) {
 	%>
 		<div>No resource</div>
 	<%
 		} else {
 	%>
-			<table border="1">
+			
 					<tr>
 						<th>Book Name</th>
 						<th>Book Category</th>
@@ -52,13 +53,14 @@
 				<%	
 					}
 				%>
-						<tr>
-							<td colspan="3" align="center">
-								<input type="button" name="btnAdd" value="Add" class="Action"/>
-							</td>
-						</tr>
-			</table>
+						
 	<%
 		}
 	%>
+						<tr>
+							<td colspan="3" align="center">
+								<input type="button" name="btnAdd" value="Add" onclick="$addBookAction" class="Action"/>
+							</td>
+						</tr>
+			</table>
 </div>

@@ -31,54 +31,72 @@ import org.exoplatform.webui.form.UIFormInputSet;
 import exoplatform.BookStoreService;
 import exoplatform.bookstore.service.BookstoreServiceUtil;
 import exoplatform.entity.Book;
-import exoplatform.exception.BookNotFoundException;
+import exoplatform.exception.DuplicateBookException;
 import exoplatform.utils.Utils;
 
+/**
+ * Created by The eXo Platform SAS
+ * Author : BinhNV
+ *          binhnv@exoplatform.com
+ * Aug 9, 2012  
+ */
 @ComponentConfig(
-   lifecycle = UIFormLifecycle.class,
-   template = "system:/groovy/webui/form/UIForm.gtmpl",
-   events = {
-     @EventConfig(listeners = UIBookEdit.EditActionListener.class)
-   }
+  lifecycle = UIFormLifecycle.class,
+  template = "system:/groovy/webui/form/UIForm.gtmpl",
+  events = {
+    @EventConfig(listeners = UIBookAdd.AddActionListener.class)
+  }
 )
-public class UIBookEdit extends UIForm implements UIPopupComponent {
+public class UIBookAdd extends UIForm implements UIPopupComponent {
 
   private Book book;
   
   /**
-   * 
+   * @param name
+   * @throws Exception
    */
-  public UIBookEdit() throws Exception {
-    UIFormInputSet uiBookInformation; 
+  public UIBookAdd() throws Exception {
+    UIFormInputSet uiBookInformation;
     uiBookInformation = new UIBookInformation("UIBookInformation");
     addChild(uiBookInformation);
-    setActions(new String[] {"Edit"});
+    setActions(new String[] {"Add"});
   }
   
-  public static class EditActionListener extends EventListener<UIBookEdit> {
+  public static class AddActionListener extends EventListener<UIBookAdd> {
 
     @Override
-    public void execute(Event<UIBookEdit> event) throws Exception {
-      UIBookEdit uiBookEdit = event.getSource();
-      UIBookInformation uiBookInformation = uiBookEdit.getChild(UIBookInformation.class);
+    public void execute(Event<UIBookAdd> event) throws Exception {
+      UIBookAdd uiBookAdd = event.getSource();
+      UIBookInformation uiBookInformation = uiBookAdd.getChild(UIBookInformation.class);
       BookStoreService service = BookstoreServiceUtil.getBookstoreService();
       Book book = new Book();
-      book.setBookId(uiBookEdit.getBook().getBookId());
-      book.setName(uiBookInformation.getUIStringInput(UIBookInformation.BOOKNAME).getValue());
       book.setCategory(Utils.bookCategoryStringToEnum(uiBookInformation.getUIFormSelectBox(UIBookInformation.CATEGORY).getValue()));
+      book.setName(uiBookInformation.getUIStringInput(UIBookInformation.BOOKNAME).getValue());
       book.setContent(uiBookInformation.getUIFormTextAreaInput(UIBookInformation.CONTENT).getValue());
       try {
-        service.editBook(book);
-        UIBookList uiBookList = uiBookEdit.getParent().getParent();
+        service.addBookWithout(book);
+        UIBookList uiBookList = uiBookAdd.getParent().getParent();
         uiBookList.setBooks(service.getAllBook());
-      } catch (BookNotFoundException e) {
+      } catch (DuplicateBookException e) {
         WebuiRequestContext ctx = event.getRequestContext();
         UIApplication uiApplication = ctx.getUIApplication();
-        uiApplication.addMessage(new ApplicationMessage("Book not found", null, ApplicationMessage.WARNING));
+        uiApplication.addMessage(new ApplicationMessage("Duplicate book", null, ApplicationMessage.WARNING));
       }
-      UIPopupAction uiPopupAction = uiBookEdit.getParent().getParent();
+      UIPopupAction uiPopupAction = uiBookAdd.getParent().getParent();
       uiPopupAction.deActive();
     }
+    
+  }
+
+  @Override
+  public void activate() throws Exception {
+    // TODO Auto-generated method stub
+    
+  }
+
+  @Override
+  public void deActivate() throws Exception {
+    // TODO Auto-generated method stub
     
   }
 
@@ -94,25 +112,6 @@ public class UIBookEdit extends UIForm implements UIPopupComponent {
    */
   public void setBook(Book book) {
     this.book = book;
-  }
-
-  public void fillBookInformation() {
-    UIBookInformation uiBookInformation = getChild(UIBookInformation.class);
-    uiBookInformation.getUIStringInput(UIBookInformation.BOOKNAME).setValue(book.getName());
-    uiBookInformation.getUIFormSelectBox(UIBookInformation.CATEGORY).setValue(Utils.bookCategoryEnumToString(book.getCategory()));
-    uiBookInformation.getUIFormTextAreaInput(UIBookInformation.CONTENT).setValue(book.getContent());
-  }
-
-  @Override
-  public void activate() throws Exception {
-    // TODO Auto-generated method stub
-    
-  }
-
-  @Override
-  public void deActivate() throws Exception {
-    // TODO Auto-generated method stub
-    
   }
 
 }

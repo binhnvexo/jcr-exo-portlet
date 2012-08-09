@@ -16,8 +16,18 @@
  */
 package exoplatform.bookstore.webui;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.exoplatform.webui.core.model.SelectItemOption;
+import org.exoplatform.webui.form.UIFormInputInfo;
 import org.exoplatform.webui.form.UIFormInputSet;
+import org.exoplatform.webui.form.UIFormSelectBox;
 import org.exoplatform.webui.form.UIFormStringInput;
+import org.exoplatform.webui.form.UIFormTextAreaInput;
+import org.exoplatform.webui.form.validator.MandatoryValidator;
+
+import exoplatform.bookstore.utils.Constants;
 
 /**
  * Created by The eXo Platform SAS
@@ -26,13 +36,37 @@ import org.exoplatform.webui.form.UIFormStringInput;
  * Aug 8, 2012  
  */
 public class UIBookInformation extends UIFormInputSet {
-
-  public UIBookInformation(String name) {
-    super("UIBookInformation");
-    addUIFormInput(new UIFormStringInput("bookId", "bookId", "bookId"));
-    addUIFormInput(new UIFormStringInput("name", "name", "name"));
-    addUIFormInput(new UIFormStringInput("category", "category", "category"));
-    addUIFormInput(new UIFormStringInput("content", "content", "content"));
+  
+  public static final String BOOKID = "bookId";
+  public static final String BOOKNAME = "name";
+  public static final String CATEGORY = "category";
+  public static final String CONTENT = "content";
+  
+  public UIBookInformation(String name) throws Exception {
+    super(name);
+    //create select box
+    SelectItemOption<String> categoryNOVEL = new SelectItemOption<String>(Constants.CATEGORY_NOVEL, Constants.CATEGORY_NOVEL_VALUE);
+    SelectItemOption<String> categoryMANGA = new SelectItemOption<String>(Constants.CATEGORY_MANGA, Constants.CATEGORY_MANGA_VALUE);
+    SelectItemOption<String> categoryCOMICS = new SelectItemOption<String>(Constants.CATEGORY_COMICS, Constants.CATEGORY_COMICS_VALUE);
+    SelectItemOption<String> categoryTECHNICAL = new SelectItemOption<String>(Constants.CATEGORY_TECHNICAL, Constants.CATEGORY_TECHNICAL_VALUE);
+    SelectItemOption<String> categoryMATHS = new SelectItemOption<String>(Constants.CATEGORY_MATHS, Constants.CATEGORY_MATHS_VALUE);
+    SelectItemOption<String> categoryHISTORY = new SelectItemOption<String>(Constants.CATEGORY_HISTORY, Constants.CATEGORY_HISTORY_VALUE);
+    
+    List<SelectItemOption<String>> categoryList = new ArrayList<SelectItemOption<String>>();
+    categoryList.add(categoryNOVEL);
+    categoryList.add(categoryMANGA);
+    categoryList.add(categoryCOMICS);
+    categoryList.add(categoryTECHNICAL);
+    categoryList.add(categoryMATHS);
+    categoryList.add(categoryHISTORY);
+    
+    UIFormSelectBox uiFormSelectBox = new UIFormSelectBox(CATEGORY, CATEGORY, categoryList);
+    
+    addUIFormInput(new UIFormStringInput(BOOKNAME, BOOKNAME, null).addValidator(MandatoryValidator.class));
+    
+    addUIFormInput(uiFormSelectBox);
+    
+    addUIFormInput(new UIFormTextAreaInput(CONTENT, CONTENT, null).addValidator(MandatoryValidator.class));
   }
   
 }
