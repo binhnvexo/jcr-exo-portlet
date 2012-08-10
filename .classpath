@@ -168,7 +168,7 @@
   <classpathentry kind="var" path="M2_REPO/org/chromattic/chromattic.common/1.1.2/chromattic.common-1.1.2.jar" sourcepath="M2_REPO/org/chromattic/chromattic.common/1.1.2/chromattic.common-1.1.2-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/chromattic/chromattic.apt/1.1.2/chromattic.apt-1.1.2.jar" sourcepath="M2_REPO/org/chromattic/chromattic.apt/1.1.2/chromattic.apt-1.1.2-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/chromattic/chromattic.metamodel/1.1.2/chromattic.metamodel-1.1.2.jar" sourcepath="M2_REPO/org/chromattic/chromattic.metamodel/1.1.2/chromattic.metamodel-1.1.2-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/chromattic/chromattic.testgenerator/1.1.1/chromattic.testgenerator-1.1.1.jar" sourcepath="M2_REPO/org/chromattic/chromattic.testgenerator/1.1.1/chromattic.testgenerator-1.1.1-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/chromattic/chromattic.testgenerator/1.1.2/chromattic.testgenerator-1.1.2.jar" sourcepath="M2_REPO/org/chromattic/chromattic.testgenerator/1.1.2/chromattic.testgenerator-1.1.2-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/com/google/code/javaparser/javaparser/1.0.8/javaparser-1.0.8.jar" sourcepath="M2_REPO/com/google/code/javaparser/javaparser/1.0.8/javaparser-1.0.8-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/reflext/reflext.api/1.1.0/reflext.api-1.1.0.jar" sourcepath="M2_REPO/org/reflext/reflext.api/1.1.0/reflext.api-1.1.0-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/reflext/reflext.spi/1.1.0/reflext.spi-1.1.0.jar" sourcepath="M2_REPO/org/reflext/reflext.spi/1.1.0/reflext.spi-1.1.0-sources.jar"/>
@@ -230,10 +230,4 @@
   <classpathentry kind="var" path="M2_REPO/org/gatein/shindig/shindig-social-api/2.0.2/shindig-social-api-2.0.2.jar" sourcepath="M2_REPO/org/gatein/shindig/shindig-social-api/2.0.2/shindig-social-api-2.0.2-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/exoplatform/jcr-exo/1.0-SNAPSHOT/jcr-exo-1.0-SNAPSHOT.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/hsqldb/hsqldb/2.0.0/hsqldb-2.0.0.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/exoplatform/social/exo.social.component.core/1.2.9-SNAPSHOT/exo.social.component.core-1.2.9-SNAPSHOT.jar" sourcepath="M2_REPO/org/exoplatform/social/exo.social.component.core/1.2.9-SNAPSHOT/exo.social.component.core-1.2.9-SNAPSHOT-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/exoplatform/doc/doc-style/1.0.6-SNAPSHOT/doc-style-1.0.6-SNAPSHOT-templates.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/wikbook/wikbook.template.core/0.9.37/wikbook.template.core-0.9.37.jar" sourcepath="M2_REPO/org/wikbook/wikbook.template.core/0.9.37/wikbook.template.core-0.9.37-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/freemarker/freemarker/2.3.18/freemarker-2.3.18.jar" sourcepath="M2_REPO/org/freemarker/freemarker/2.3.18/freemarker-2.3.18-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/chromattic/chromattic.core/1.1.1/chromattic.core-1.1.1.jar" sourcepath="M2_REPO/org/chromattic/chromattic.core/1.1.1/chromattic.core-1.1.1-sources.jar"/>
-  <classpathentry kind="lib" path="/home/binhnv/java/jdk1.6/lib/tools.jar"/>
 </classpath>
