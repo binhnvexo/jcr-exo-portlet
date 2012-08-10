@@ -19,9 +19,11 @@ package exoplatform.bookstore.webui;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.exoplatform.web.application.ApplicationMessage;
 import org.exoplatform.webui.application.WebuiRequestContext;
 import org.exoplatform.webui.config.annotation.ComponentConfig;
 import org.exoplatform.webui.config.annotation.EventConfig;
+import org.exoplatform.webui.core.UIApplication;
 import org.exoplatform.webui.core.UIComponent;
 import org.exoplatform.webui.core.UIPopupWindow;
 import org.exoplatform.webui.event.Event;
@@ -81,14 +83,17 @@ public class UIBookList extends UIComponent {
     @Override
     public void execute(Event<UIBookList> event) throws Exception {
       WebuiRequestContext ctx = event.getRequestContext();
+      UIBookList uiBookList = event.getSource();
       String bookId = ctx.getRequestParameter(OBJECTID);
       try {
         BookStoreService service = BookstoreServiceUtil.getBookstoreService();
         service.deleteBook(bookId);
+        uiBookList.setBooks(service.getAllBook());
       } catch (BookNotFoundException e) {
-        e.printStackTrace();
+        UIApplication uiApplication = ctx.getUIApplication();
+        uiApplication.addMessage(new ApplicationMessage("Can not delete book", null, ApplicationMessage.ERROR));
       }
-      ctx.addUIComponentToUpdateByAjax(event.getSource());
+      ctx.addUIComponentToUpdateByAjax(uiBookList);
     }
     
   }

@@ -29,6 +29,7 @@ import org.exoplatform.webui.form.UIForm;
 import org.exoplatform.webui.form.UIFormInputSet;
 
 import exoplatform.BookStoreService;
+import exoplatform.bookstore.portlet.UIBookManagementPortlet;
 import exoplatform.bookstore.service.BookstoreServiceUtil;
 import exoplatform.entity.Book;
 import exoplatform.exception.DuplicateBookException;
@@ -75,7 +76,9 @@ public class UIBookAdd extends UIForm implements UIPopupComponent {
       book.setContent(uiBookInformation.getUIFormTextAreaInput(UIBookInformation.CONTENT).getValue());
       try {
         service.addBookWithout(book);
-        UIBookList uiBookList = uiBookAdd.getParent().getParent();
+        UIBookList uiBookList = uiBookAdd.getAncestorOfType(UIBookManagementPortlet.class)
+            .getChild(UIBookManagement.class)
+            .getChild(UIBookList.class);
         uiBookList.setBooks(service.getAllBook());
       } catch (DuplicateBookException e) {
         WebuiRequestContext ctx = event.getRequestContext();

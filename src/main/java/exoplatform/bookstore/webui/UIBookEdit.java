@@ -29,6 +29,7 @@ import org.exoplatform.webui.form.UIForm;
 import org.exoplatform.webui.form.UIFormInputSet;
 
 import exoplatform.BookStoreService;
+import exoplatform.bookstore.portlet.UIBookManagementPortlet;
 import exoplatform.bookstore.service.BookstoreServiceUtil;
 import exoplatform.entity.Book;
 import exoplatform.exception.BookNotFoundException;
@@ -69,7 +70,9 @@ public class UIBookEdit extends UIForm implements UIPopupComponent {
       book.setContent(uiBookInformation.getUIFormTextAreaInput(UIBookInformation.CONTENT).getValue());
       try {
         service.editBook(book);
-        UIBookList uiBookList = uiBookEdit.getParent().getParent();
+        UIBookList uiBookList = uiBookEdit.getAncestorOfType(UIBookManagementPortlet.class)
+                                          .getChild(UIBookManagement.class)
+                                          .getChild(UIBookList.class);
         uiBookList.setBooks(service.getAllBook());
       } catch (BookNotFoundException e) {
         WebuiRequestContext ctx = event.getRequestContext();
